@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const routes = require('./routes');
 const http = require('http');
 const { setupWebSocket } = require('./websocket')
-const porta = 8080;
+const porta = process.env.PORT || 3333;
 const app = express();
 const server = http.Server(app);
 
