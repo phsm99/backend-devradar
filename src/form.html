@@ -48,8 +48,10 @@ function EnviarUser(){
         return;
     }
 
+const urlA = `${window.location.href}devs`;
+
 $.ajax({
-    url: 'http://localhost:3333/devs',
+    url: urlA,
     contentType: 'application/json',
     cache: false,
     method: 'POST',
@@ -68,6 +70,7 @@ $.ajax({
     error:function(err){
         alert('erro');
         console.log(err);
+        console.log(urlA);
     }
 });
 }
