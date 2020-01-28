@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Cadastrar DEV</title>
+</head>
+<body>
+
+
+<p id="demo" > </p>
+<form action="/action_page.php">
+  User GITHUB:<br>
+  <input type="text" id="user" >
+  <br>
+  TECHS:<br>
+  <input type="text" id="techs" >
+  <br>
+  Latitude:<br>
+  <input type="text" id="Latitude" >
+  <br>
+  Longitude:<br>
+  <input type="text" id="Longitude" >
+  <br><br>
+  <input type="button" onclick=EnviarUser() value="Cadastrar">
+</form> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+var x = document.getElementById("demo");
+
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else {
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+
+function showPosition(position) {
+  document.getElementById("Latitude").value = position.coords.latitude;
+    document.getElementById("Longitude").value = position.coords.longitude;
+}
+
+function EnviarUser(){
+   const lat= $("#Latitude").val();
+    const lon= document.getElementById("Longitude").value;
+    const user= document.getElementById("user").value;
+    const techs= document.getElementById("techs").value;
+
+    if(!lat || !lon || !user || !techs){
+        alert('preencha todos os campos!');
+        return;
+    }
+
+$.ajax({
+    url: 'http://localhost:3333/devs',
+    contentType: 'application/json',
+    cache: false,
+    method: 'POST',
+    dataType: 'json',
+    crossDomain: true,
+    data: JSON.stringify({
+        github_username: user,
+    techs:techs,
+    latitude:lat,
+    longitude:lon,
+    }),
+    success: function(data) {
+        alert('sucesso');
+        console.log(data);
+    },
+    error:function(err){
+        alert('erro');
+    }
+});
+}
+</script>
+</body>
+</html>
