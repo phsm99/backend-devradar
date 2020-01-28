@@ -6,7 +6,7 @@ const SearchController = require('./controllers/SearchController');
 const routes = Router();
 
 routes.get('/', (request, response) => {
-    return response.json({ "message": "Olá" })
+    return response.sendFile('form.html')
 })
 
 routes.get('/devs', DevController.index);
