@@ -26,6 +26,8 @@ module.exports = {
                 name = apiResponse.data.login;
             }
             const techsArray = parseStringAsArray(techs);
+            console.log(techsArray);
+            
 
             const location = {
                 type: 'Point',
